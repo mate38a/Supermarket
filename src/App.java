@@ -29,13 +29,25 @@ public class App {
                 System.out.println("--- Add New Product ---");
                 System.out.print("Enter product name: ");
                 String name = scanner.nextLine();
+                if (name.isEmpty()) {
+                    System.out.println("  Product name cannot be empty.");
+                    continue;
+                }
 
                 System.out.print("Enter selling price: ");
                 double price = scanner.nextDouble();
+                if (price <= 0) {
+                    System.out.println("  Product price must be positive.");
+                    continue;
+                }
 
                 System.out.print("Enter quantity: ");
                 int quantity = scanner.nextInt();
                 scanner.nextLine(); // consume newline
+                if (quantity <= 0) {
+                    System.out.println("  Product quantity must be positive.");
+                    continue;
+                }
 
                 boolean added = inventory.addProduct(name, price, quantity);
                 if (added) {
@@ -54,10 +66,18 @@ public class App {
                 System.out.println("--- Sell a Product ---");
                 System.out.print("Enter the product name to sell: ");
                 String name = scanner.nextLine();
+                if (name.isEmpty()) {
+                    System.out.println("  Product name cannot be empty.");
+                    continue;
+                }
 
                 System.out.print("Enter quantity to sell: ");
                 int quantity = scanner.nextInt();
                 scanner.nextLine(); // consume newline
+                if (quantity <= 0) {
+                    System.out.println("  Product quantity must be positive.");
+                    continue;
+                }
 
                 inventory.sellProduct(name, quantity);
 
@@ -66,6 +86,10 @@ public class App {
                 System.out.println("--- Remove a Product ---");
                 System.out.print("Enter the product name to remove: ");
                 String name = scanner.nextLine();
+                if (name.isEmpty()) {
+                    System.out.println("  Product name cannot be empty.");
+                    continue;
+                }
 
                 inventory.removeProduct(name);
 
